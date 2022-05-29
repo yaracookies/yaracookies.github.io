@@ -1,0 +1,14 @@
+//validasi barang udah ada atau belum
+$cek = mysqli_query($conn, "select * from tb_stock where namabarang='$namabarang'");
+$hitung = mysqli_num_rows($cek);
+
+
+if ($hitung<1) { //jika belum ada
+    $addtotable=mysqli_query($conn, "insert into tb_stock (namabarang, deskripsi, stock) values('$namabarang','$deskripsi','$stock')"
+    ); if ($addtotable) { header('location:index.php'); } else { echo 'Gagal' ; header('location:index.php'); } } else {
+    //jika sudah ada echo '
+    <script>
+    alert("Data barang sudah ada");
+    window.location.href="index.php";
+    </script>
+    ' ; }
